@@ -16,12 +16,7 @@
 
     <ng-container matColumnDef="tipoPessoa">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo da Pessoa </th>
-      <td mat-cell *matCellDef="let element"> {{element.tipoPessoa}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="dataCadastro">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cadastro </th>
-      <td mat-cell *matCellDef="let element"> {{element.dataCadastro | date: 'dd/MM/yyyy'}}</td>
+      <td mat-cell *matCellDef="let element"> {{element.tipoPessoa.descricao}} </td>
     </ng-container>
 
     <ng-container matColumnDef="acoes">
