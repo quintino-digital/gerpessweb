@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Cadastrar Pessoa</h2>
+
+<mat-dialog-content>
+
+  <div class="row">
+
+    <div class="column">
+      <mat-form-field appearance="fill">
+        <mat-label>Nome da Pessoa</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+
+    <div class="column">
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo de Pessoa</mat-label>
+        <mat-select>
+          <mat-option>Selecione</mat-option>
+          <mat-option *ngFor="let item of tipoPessoaList" [value]="item.codigo">{{item.descricao}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial color="primary">Cadastrar Pessoa</button>
+  <button mat-button (click)="cancelarCadastro()" mat-dialog-close color="warn">Cancelar</button>
+</mat-dialog-actions>
