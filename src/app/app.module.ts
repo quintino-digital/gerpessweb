@@ -19,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PessoaCadastrarComponent } from './page/pessoa/pessoa-cadastrar/pessoa-cadastrar.component';
 import { PessoaComponent } from './page/pessoa/pessoa.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { PessoaComponent } from './page/pessoa/pessoa.component';
     MatDialogModule,
     MatSelectModule,
     MatDividerModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
