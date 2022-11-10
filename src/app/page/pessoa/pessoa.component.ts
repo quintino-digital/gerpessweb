@@ -33,8 +33,8 @@ export class PessoaComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    this.dataSource.paginator._intl.itemsPerPageLabel = "Itens por página: ";
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator._intl.itemsPerPageLabel = "Itens por página: ";
   }
 
   pesquisarDados(event: Event) {
@@ -55,6 +55,8 @@ export class PessoaComponent implements OnInit, AfterViewInit {
   public findAll() {
     return this.pessoaService.findAll().subscribe( response => {
       this.dataSource.data = response;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 
