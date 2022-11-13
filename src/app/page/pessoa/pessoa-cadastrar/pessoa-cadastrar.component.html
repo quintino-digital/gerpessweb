@@ -1,31 +1,41 @@
 <h2 mat-dialog-title>Cadastrar Pessoa</h2>
 
-<mat-dialog-content>
+<form [formGroup]="formGroup" (ngSubmit)="saveOne()">
 
-  <div class="row">
+  <mat-dialog-content>
 
-    <div class="column">
-      <mat-form-field appearance="fill">
-        <mat-label>Nome da Pessoa</mat-label>
-        <input matInput>
-      </mat-form-field>
+    <div class="row">
+
+      <div class="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Nome da Pessoa</mat-label>
+          <input matInput formControlName="nome" autocomplete="off">
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="formGroup.get('nome')?.hasError('required') && formGroup.get('nome')?.touched"><b>O Nome deve ser informado!</b></span>
+        </div>
+      </div>
+
+      <div class="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Tipo de Pessoa</mat-label>
+          <mat-select formControlName="codigoTipoPessoa">
+            <mat-option>Selecione</mat-option>
+            <mat-option *ngFor="let item of tipoPessoaList" [value]="item.codigo">{{item.descricao}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="formGroup.get('codigoTipoPessoa')?.hasError('required') && formGroup.get('codigoTipoPessoa')?.touched"><b>O Tipo da Pessoa deve ser informado!</b></span>
+        </div>
+      </div>
+
     </div>
 
-    <div class="column">
-      <mat-form-field appearance="fill">
-        <mat-label>Tipo de Pessoa</mat-label>
-        <mat-select>
-          <mat-option>Selecione</mat-option>
-          <mat-option *ngFor="let item of tipoPessoaList" [value]="item.codigo">{{item.descricao}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+  </mat-dialog-content>
 
-  </div>
+  <mat-dialog-actions align="end">
+    <button type="submit" [disabled]="formGroup.invalid" mat-raised-button [mat-dialog-close]="true" cdkFocusInitial color="primary">Cadastrar Pessoa</button>
+    <button type="button" mat-button (click)="cancelarCadastro()" mat-dialog-close color="warn">Cancelar</button>
+  </mat-dialog-actions>
 
-</mat-dialog-content>
-
-<mat-dialog-actions align="end">
-  <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial color="primary">Cadastrar Pessoa</button>
-  <button mat-button (click)="cancelarCadastro()" mat-dialog-close color="warn">Cancelar</button>
-</mat-dialog-actions>
+</form>

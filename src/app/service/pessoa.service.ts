@@ -16,4 +16,8 @@ export class PessoaService {
     return this.httpClient.get<any[]>(`${environment.BASE_PESSOA_API}/api/v1/pessoa`);
   }
 
+  public saveOne(pessoaRequestDTO: any) : Observable<any> {
+    return this.httpClient.post(`${environment.BASE_PESSOA_API}/api/v1/pessoa`, pessoaRequestDTO);
+  }
+
 }
