@@ -20,4 +20,8 @@ export class PessoaService {
     return this.httpClient.post(`${environment.BASE_PESSOA_API}/api/v1/pessoa`, pessoaRequestDTO);
   }
 
+  public deleteOne(codigo: number) {
+    return this.httpClient.delete(`${environment.BASE_PESSOA_API}/api/v1/pessoa/${codigo}`);
+  }
+
 }

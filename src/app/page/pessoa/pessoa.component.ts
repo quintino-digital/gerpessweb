@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PessoaService } from '../../service/pessoa.service';
@@ -20,9 +21,12 @@ export class PessoaComponent implements OnInit, AfterViewInit {
 
   dataSource = new MatTableDataSource<any>();
 
+  public isLoading: boolean = false;
+
   constructor(
     public dialog: MatDialog,
-    private pessoaService: PessoaService
+    private pessoaService: PessoaService,
+    private _snackBar: MatSnackBar
   ) {
     this.dataSource = new MatTableDataSource();
   }
@@ -53,11 +57,31 @@ export class PessoaComponent implements OnInit, AfterViewInit {
   }
 
   public findAll() {
+    this.isLoading = true;
     return this.pessoaService.findAll().subscribe( response => {
-      this.dataSource.data = response;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      setTimeout(() => {
+        this.dataSource.data = response;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.isLoading = false;
+      }, 1000);
     });
   }
+
+  public deleteOne(codigo: number) {
+    console.log("Remove One.....");
+    return this.pessoaService.deleteOne(codigo).subscribe( response => {
+      this.findAll();
+      this.apresentarMensagemRemoveSucesso();
+    });
+  }
+
+  private apresentarMensagemRemoveSucesso() {
+    this._snackBar.open("Dados Deletados com Sucesso", "", {
+      duration: 2000,
+      verticalPosition: 'top',
+      horizontalPosition: 'end', //'start' | 'center' | 'end' | 'left'
+    });
+  };
 
 }

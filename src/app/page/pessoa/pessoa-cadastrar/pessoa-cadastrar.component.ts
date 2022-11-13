@@ -14,6 +14,8 @@ export class PessoaCadastrarComponent implements OnInit {
 
   public pessoaList: any[] = [];
 
+  public isLoading: boolean = false;
+
   public tipoPessoaList: any[] = [
     { codigo: 1, descricao: 'Pessoa Física' },
     { codigo: 2, descricao: 'Pessoa Jurídica' },
@@ -42,9 +44,10 @@ export class PessoaCadastrarComponent implements OnInit {
         codigo: this.formGroup.value.codigoTipoPessoa,
       }
     };
+    this.isLoading = true;
     return this.pessoaService.saveOne(pessoaRequestDTO).subscribe( response => {
-      console.log(response);
-      console.log("Pessoa Sava com Sucesso!");
+      this.isLoading = false;
+      this.pessoaService.findAll();
     });
   }
 

@@ -21,12 +21,14 @@ import { AppComponent } from './app.component';
 import { PessoaCadastrarComponent } from './page/pessoa/pessoa-cadastrar/pessoa-cadastrar.component';
 import { PessoaComponent } from './page/pessoa/pessoa.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent, PessoaComponent, PessoaCadastrarComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule, 
     BrowserAnimationsModule,
     MatToolbarModule,
     MatCardModule,
@@ -44,6 +46,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDatepickerModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatProgressBarModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],
