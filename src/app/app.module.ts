@@ -23,12 +23,13 @@ import { PessoaComponent } from './page/pessoa/pessoa.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [AppComponent, PessoaComponent, PessoaCadastrarComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule, 
+    AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatCardModule,
@@ -47,7 +48,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     HttpClientModule,
     ReactiveFormsModule,
     MatProgressBarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent],

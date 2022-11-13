@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { PessoaService } from './../../../service/pessoa.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -16,6 +17,8 @@ export class PessoaCadastrarComponent implements OnInit {
 
   public isLoading: boolean = false;
 
+  public isSpinner: boolean = false;
+
   public tipoPessoaList: any[] = [
     { codigo: 1, descricao: 'Pessoa Física' },
     { codigo: 2, descricao: 'Pessoa Jurídica' },
@@ -24,7 +27,8 @@ export class PessoaCadastrarComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<PessoaCadastrarComponent>,
     private formBuilder: FormBuilder,
-    private pessoaService: PessoaService
+    private pessoaService: PessoaService,
+    private _snackBar: MatSnackBar
   ) {
     this.formGroup = this.formBuilder.group({
       nome: ["", Validators.required],
@@ -45,14 +49,27 @@ export class PessoaCadastrarComponent implements OnInit {
       }
     };
     this.isLoading = true;
+    this.isSpinner = true;
     return this.pessoaService.saveOne(pessoaRequestDTO).subscribe( response => {
-      this.isLoading = false;
-      this.pessoaService.findAll();
+      setTimeout(() => {
+        this.isLoading = false;
+        this.isSpinner = false;
+        this.pessoaService.findAll();
+      }, 2000);
+      this.apresentarMensagemRemoveSucesso();
     });
   }
 
   public cancelarCadastro() {
     this.dialogRef.close();
   }
+
+  private apresentarMensagemRemoveSucesso() {
+    this._snackBar.open("Dados Cadastrados com Sucesso", "", {
+      duration: 3000,
+      verticalPosition: 'top',
+      horizontalPosition: 'end', //'start' | 'center' | 'end' | 'left'
+    });
+  };
 
 }

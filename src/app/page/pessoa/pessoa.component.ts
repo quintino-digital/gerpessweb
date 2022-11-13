@@ -64,7 +64,7 @@ export class PessoaComponent implements OnInit, AfterViewInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.isLoading = false;
-      }, 1000);
+      }, 500);
     });
   }
 
@@ -78,7 +78,7 @@ export class PessoaComponent implements OnInit, AfterViewInit {
 
   private apresentarMensagemRemoveSucesso() {
     this._snackBar.open("Dados Deletados com Sucesso", "", {
-      duration: 2000,
+      duration: 3000,
       verticalPosition: 'top',
       horizontalPosition: 'end', //'start' | 'center' | 'end' | 'left'
     });
